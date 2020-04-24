@@ -1,60 +1,6 @@
 <?php
 
-function convert_to_gallons($value, $fromUnit) {
-  switch($fromUnit) {
-    case 'bucket':
-      return $value * 4;
-      break;
-    case 'butt':
-      return $value * 108;
-      break;
-    case 'firkin':
-      return $value * 9;
-      break;
-    case 'hogshead':
-      return $value * 54;
-      break;
-    case 'gallon':
-      return $value;
-      break;
-    case 'pint':
-      return $value * 0.125;
-      break;
-    default:
-      return "Unsupported unit.";
-  }
-}
-  
-function convert_from_gallons($value, $toUnit) {
-  switch($toUnit) {
-    case 'bucket':
-      return $value / 4;
-      break;
-    case 'butt':
-      return $value / 108;
-      break;
-    case 'firkin':
-      return $value / 9;
-      break;
-    case 'hogshead':
-      return $value / 54;
-      break;
-    case 'gallon':
-      return $value;
-      break;
-    case 'pint':
-      return $value / 0.125;
-      break;
-    default:
-      return "Unsupported unit.";
-  }
-}
-
-function convert_liquid($value, $fromUnit, $toUnit) {
-  $gallonValue = convert_to_gallons($value, $fromUnit);
-  $newValue = convert_from_gallons($gallonValue, $toUnit);
-  return $newValue;
-}
+include_once('includes/functions.php');
 
 $fromValue = '';
 $fromUnit = '';
@@ -72,18 +18,11 @@ elseif($_POST['submit']) {
 }
 
 ?>
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Convert Liquid</title>
-    <link href="styles.css" rel="stylesheet" type="text/css">
-  </head>
-  <body>
-
+    <?php $pageTitle = 'Convert Liquids'; ?>
+    <?php include_once('includes/header.php'); ?>
     <div id="main-content">
 
-      <h1>Convert Liquid</h1>
+      <h1>Volumizer - Liquid Measurement Converter</h1>
   
       <form action="" method="post">
         
@@ -121,5 +60,5 @@ elseif($_POST['submit']) {
       <a href="index.php">Return to menu</a>
       
     </div>
-  </body>
-</html>
+    <?php include_once('includes/footer.php'); ?>
+  
